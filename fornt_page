@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constellation Facts</title>
+    <style>
+        body {
+            background: url('space-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Futura', sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #fact-container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        #fact {
+            font-size: 24px;
+            color: #00FFDD;
+            text-shadow: 2px 2px 4px #000000;
+            opacity: 0;
+            transition: opacity 2s;
+        }
+
+        #fact-button {
+            background-color: #0066FF;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        #fact-button:hover {
+            background-color: #0044CC;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        #fact-container {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="fact-container">
+        <p id="fact">Click the button to learn about constellations!</p>
+    </div>
+    <button id="fact-button">Discover a Fact</button>
+    <script>
+        const facts = [
+            "The constellation Orion is named after a hunter in Greek mythology.",
+            "The Big Dipper is part of the Ursa Major constellation.",
+            "The Milky Way galaxy is home to more than 100 billion stars!",
+            "The star Sirius is the brightest star in the night sky.",
+            "Constellations were used by ancient cultures for navigation and storytelling."
+        ];
+
+        const factContainer = document.getElementById('fact');
+        const factButton = document.getElementById('fact-button');
+
+        let currentFact = 0;
+
+        factButton.addEventListener('click', function() {
+            factContainer.style.opacity = 0;
+            setTimeout(() => {
+                factContainer.textContent = facts[currentFact];
+                factContainer.style.opacity = 1;
+                currentFact = (currentFact + 1) % facts.length;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
